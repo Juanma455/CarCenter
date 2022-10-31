@@ -29,4 +29,14 @@ public class ElectricCar extends Car implements IBatteryNotify {
 		this.batteryCapacity = batteryCapacity;
 	}
 
+	@Override
+	public String drive(double kilometers){
+		return "El vehiculo electrico se ha movilizado en: " + kilometers + "km";
+	}
+
+	@Override
+	public String calculateBatteryLevel(){
+		return "mi bateria actual es kw";
+	}
+
 }

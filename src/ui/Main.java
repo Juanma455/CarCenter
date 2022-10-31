@@ -36,10 +36,11 @@ public class Main {
 		int option = 0; 
 		System.out.println("<<<<< Welcome to Store >>>>>");
 		System.out.println(
-				"1. agregar un carro nuevo\n" +
-				"2. calcular probabilidad de colisión \n" +
-				"3. calcular estado de la bateria \n" +
-				"0. Exit. ");
+				"1. agregar un carro autonomo nuevo.\n" +
+				"2. agregar un carro electrico nuevo.\n" +
+				"3. calcular probabilidad de colision. \n" +
+				"4. calcular estado de la bateria \n" +
+				"0. Exit. \n");
 		option =  validateIntegerInput();
 		return option; 
 	}
@@ -50,22 +51,60 @@ public class Main {
 		String model = ""; 
 		double velocity = 0; 
 		double position = 0; 
+		double batteryCapacity = 0;
 
 		switch(option){
 			case 1: 
-				// create car 
+				
+				System.out.println("Ingrese el id del carro: ");
+				id = reader.next();
+				System.out.println("Ingrese la placa del carro: ");
+				licensePlate = reader.next();
+				System.out.println("Ingrese el modelo del carro: ");
+				model = reader.next();
+				System.out.println("Ingrese la velocidad del carro: ");
+				velocity = reader.nextDouble();
+				System.out.println("Ingrese la posicion del carro: ");
+				position = reader.nextDouble();
+	
+				String msj = controller.createCarAutonomous(id, licensePlate, model, velocity, position);
+				System.out.println(msj + "\n");
 
-				break; 
+				break;
 
 			case 2: 
-				// calcular probabilidad de colisión  
+
+				System.out.println("Ingrese el id del carro: ");
+				id = reader.next();
+				System.out.println("Ingrese la placa del carro: ");
+				licensePlate = reader.next();
+				System.out.println("Ingrese el modelo del carro: ");
+				model = reader.next();
+				System.out.println("Ingrese la capacidad de la bateria del carro: ");
+				batteryCapacity = reader.nextDouble();
+
+				msj = controller.createCarElectric(id, licensePlate, model, batteryCapacity);
+				System.out.println(msj + "\n");
 
 				break; 
 
 			case 3: 
-				// calcular capacidad de las baterias 
+				
+				System.out.println("Ingrese el id del carro autonomo: ");
+				id = reader.next();
+
+				msj = controller.calculateCollisionProbability(id);
+				System.out.println(msj);
 
 				break; 
+
+			case 4:
+
+				System.out.println("Ingrese el id del carro electrico: ");
+				id = reader.next();
+
+				msj = controller.calculateBatery(batteryCapacity, id);
+				System.out.println(msj);
 
 			case 0: 
 				System.out.println("Exit program.");
